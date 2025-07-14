@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Contact {{ portfolio.title }}{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-4">Contact {{ portfolio.title }}</h1>
+    <form method="POST" action="{{ url_for('portfolio.send_inquiry', portfolio_id=portfolio.id) }}">
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Your Name</label>
+            <input type="text" name="name" class="w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Your Email</label>
+            <input type="email" name="email" class="w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Subject</label>
+            <input type="text" name="subject" class="w-full border border-gray-300 rounded px-3 py-2" required>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Message</label>
+            <textarea name="message" rows="5" class="w-full border border-gray-300 rounded px-3 py-2" required></textarea>
+        </div>
+        <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded">Send Message</button>
+    </form>
+    <a href="{{ url_for('main.view_portfolio', portfolio_id=portfolio.id) }}" class="text-primary-600 hover:underline block mt-4">&larr; Back to Portfolio</a>
+</div>
+{% endblock %} 

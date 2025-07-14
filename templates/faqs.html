@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block title %}Frequently Asked Questions - {{ config.SITE_NAME }}{% endblock %}
+{% block description %}Find answers to common questions about FreelanceHub, portfolio creation, and getting started with your freelance career.{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
+                <p class="text-xl text-primary-100 max-w-3xl mx-auto">
+                    Find answers to common questions about FreelanceHub and how to make the most of your portfolio.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="relative">
+                <input type="text" 
+                       id="faq-search" 
+                       placeholder="Search FAQs..." 
+                       class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <!-- Getting Started -->
+        <div class="faq-section mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Getting Started</h2>
+            <div class="space-y-4">
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How do I create my first portfolio?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">To create your first portfolio, simply register for an account and click "Create Portfolio" in your dashboard. You can then add your personal information, skills, projects, and testimonials using our intuitive drag-and-drop editor.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">Is FreelanceHub free to use?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">Yes! FreelanceHub is completely free to use. You can create and manage your portfolio, receive client inquiries, and access all basic features without any cost.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How long does it take to set up a portfolio?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">You can create a basic portfolio in just 10-15 minutes. For a comprehensive portfolio with multiple projects and testimonials, we recommend spending 30-60 minutes to showcase your work effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio Management -->
+        <div class="faq-section mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Portfolio Management</h2>
+            <div class="space-y-4">
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">Can I make my portfolio private?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">Yes, you can set your portfolio to private mode. Private portfolios are only visible to you and won't appear in search results or browse pages. You can toggle this setting in your portfolio dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How do I add projects to my portfolio?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">In your portfolio editor, click "Add Project" and fill in the project details including title, description, technologies used, and project links. You can also upload images to showcase your work visually.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">Can I customize the design of my portfolio?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">Currently, we offer a clean, professional design that works well for all types of freelancers. We're working on adding more customization options in future updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Client Communication -->
+        <div class="faq-section mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Client Communication</h2>
+            <div class="space-y-4">
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How do clients contact me?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">Clients can contact you through the contact form on your portfolio page. You'll receive email notifications for all inquiries, and you can manage them in your dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">Do you charge commission on projects?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">No, we don't charge any commission on your projects. FreelanceHub is a portfolio platform that helps you showcase your work and connect with clients. All project negotiations and payments are handled directly between you and your clients.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How do I respond to client inquiries?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">When you receive an inquiry, you'll get an email notification with the client's contact information. You can then respond directly to their email to discuss project details, timelines, and pricing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics & Insights -->
+        <div class="faq-section mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Analytics & Insights</h2>
+            <div class="space-y-4">
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">What analytics do you provide?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">We provide portfolio view counts, visitor analytics, and inquiry tracking. You can see how many people visit your portfolio, where they come from, and how many inquiries you receive.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How often are analytics updated?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">Analytics are updated in real-time. View counts and visitor data are recorded immediately when someone visits your portfolio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Support -->
+        <div class="faq-section mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Technical Support</h2>
+            <div class="space-y-4">
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">What browsers are supported?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">FreelanceHub works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version of your browser for the best experience.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How do I reset my password?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">Click "Forgot Password" on the login page and enter your email address. You'll receive a password reset link via email.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-lg shadow-md">
+                    <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+                        <span class="font-medium text-gray-900">How do I contact support?</span>
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-700">You can contact our support team through the contact form on our website or email us directly at support@freelancehub.com. We typically respond within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // FAQ toggle functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('.faq-icon');
+            
+            // Toggle answer visibility
+            answer.classList.toggle('hidden');
+            
+            // Rotate icon
+            if (answer.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('faq-search');
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                item.style.display = 'block';
+                if (searchTerm) {
+                    item.style.opacity = '1';
+                }
+            } else {
+                if (searchTerm) {
+                    item.style.opacity = '0.3';
+                } else {
+                    item.style.opacity = '1';
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

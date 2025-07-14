@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Freelance Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+        .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+        .button { display: inline-block; background: #667eea; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; margin: 10px; }
+        .footer { text-align: center; margin-top: 30px; color: #6b7280; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Welcome to Freelance Portfolio!</h1>
+            <p>Your journey to showcase your work starts here</p>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{ user.first_name }},</p>
+            
+            <p>Welcome to Freelance Portfolio! We're excited to help you create a stunning portfolio that will attract clients and showcase your amazing work.</p>
+            
+            <h3>🚀 What you can do now:</h3>
+            <ul>
+                <li><strong>Create Your Portfolio:</strong> Build a professional showcase of your work</li>
+                <li><strong>Add Projects:</strong> Upload images and descriptions of your best work</li>
+                <li><strong>Showcase Skills:</strong> Highlight your expertise and proficiency levels</li>
+                <li><strong>Get Testimonials:</strong> Add client feedback to build trust</li>
+                <li><strong>Track Analytics:</strong> Monitor views and client interactions</li>
+            </ul>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{ portfolio_url }}" class="button">Create Your Portfolio</a>
+                <a href="{{ browse_url }}" class="button" style="background: #10b981;">Browse Other Portfolios</a>
+            </div>
+            
+            <h3>💡 Pro Tips:</h3>
+            <ul>
+                <li>Add high-quality images of your work</li>
+                <li>Write compelling project descriptions</li>
+                <li>Keep your skills list updated</li>
+                <li>Respond quickly to client inquiries</li>
+                <li>Share your portfolio link on social media</li>
+            </ul>
+            
+            <p>Ready to get started? Click the button above to create your portfolio!</p>
+            
+            <p>Best regards,<br>The Freelance Portfolio Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>If you have any questions, feel free to reach out to our support team.</p>
+        </div>
+    </div>
+</body>
+</html> 

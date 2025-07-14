@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio View Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #3b82f6; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+        .content { background: #f9fafb; padding: 20px; border-radius: 0 0 8px 8px; }
+        .stats { background: white; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .button { display: inline-block; background: #3b82f6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; }
+        .footer { text-align: center; margin-top: 20px; color: #6b7280; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Your Portfolio Was Viewed!</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{ portfolio.user.first_name }},</p>
+            
+            <p>Great news! Someone just viewed your portfolio <strong>"{{ portfolio.title }}"</strong>.</p>
+            
+            <div class="stats">
+                <h3>View Details:</h3>
+                <ul>
+                    <li><strong>Time:</strong> {{ view_time }}</li>
+                    <li><strong>Location:</strong> {{ viewer_location }}</li>
+                    <li><strong>Device:</strong> {{ viewer_device }}</li>
+                </ul>
+            </div>
+            
+            <p>This brings your total portfolio views to <strong>{{ total_views }}</strong>!</p>
+            
+            <p>Keep up the great work! Your portfolio is attracting attention.</p>
+            
+            <div style="text-align: center; margin: 25px 0;">
+                <a href="{{ portfolio_url }}" class="button">View Your Portfolio</a>
+            </div>
+            
+            <p>Best regards,<br>The Freelance Portfolio Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>You're receiving this because you have email notifications enabled for your portfolio.</p>
+            <p><a href="{{ unsubscribe_url }}">Unsubscribe from view notifications</a></p>
+        </div>
+    </div>
+</body>
+</html> 

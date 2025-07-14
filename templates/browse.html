@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}Browse Portfolios - Freelance Portfolio{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Browse Portfolios</h1>
+        <p class="mt-2 text-gray-600">Discover talented freelancers and their amazing work</p>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="bg-white shadow rounded-lg mb-8">
+        <div class="p-6">
+            <form method="GET" action="{{ url_for('main.browse') }}" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="skill" class="block text-sm font-medium text-gray-700">Skill</label>
+                        <input type="text" name="skill" id="skill" value="{{ skill_filter }}" 
+                               placeholder="e.g., React, Python, Design"
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="industry" class="block text-sm font-medium text-gray-700">Industry</label>
+                        <select name="industry" id="industry" 
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                            <option value="">All Industries</option>
+                            <option value="Technology" {% if industry_filter == 'Technology' %}selected{% endif %}>Technology</option>
+                            <option value="Healthcare" {% if industry_filter == 'Healthcare' %}selected{% endif %}>Healthcare</option>
+                            <option value="Finance" {% if industry_filter == 'Finance' %}selected{% endif %}>Finance</option>
+                            <option value="Education" {% if industry_filter == 'Education' %}selected{% endif %}>Education</option>
+                            <option value="E-commerce" {% if industry_filter == 'E-commerce' %}selected{% endif %}>E-commerce</option>
+                            <option value="Entertainment" {% if industry_filter == 'Entertainment' %}selected{% endif %}>Entertainment</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                        <input type="text" name="location" id="location" value="{{ location_filter }}" 
+                               placeholder="e.g., New York, Remote"
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div class="mb-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-gray-900">
+                {% if skill_filter or industry_filter or location_filter %}
+                    Search Results
+                {% else %}
+                    All Portfolios
+                {% endif %}
+            </h2>
+            <p class="text-gray-600">{{ portfolios.total }} portfolios found</p>
+        </div>
+
+        {% if portfolios.items %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for portfolio in portfolios.items %}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                <!-- Portfolio Header -->
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        {% if portfolio.profile_image %}
+                        <img src="{{ portfolio.profile_image }}" alt="{{ portfolio.title }}" 
+                             class="w-16 h-16 rounded-full object-cover mr-4">
+                        {% else %}
+                        <div class="w-16 h-16 rounded-full bg-primary-500 flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">{{ portfolio.user.first_name[0] }}{{ portfolio.user.last_name[0] }}</span>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">{{ portfolio.title }}</h3>
+                            <p class="text-sm text-gray-600">{{ portfolio.user.first_name }} {{ portfolio.user.last_name }}</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">{{ portfolio.bio[:150] }}{% if portfolio.bio|length > 150 %}...{% endif %}</p>
+                    
+                    <!-- Skills Preview -->
+                    {% set skills = portfolio.skills.limit(3).all() %}
+                    {% if skills %}
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        {% for skill in skills %}
+                        <span class="bg-primary-100 text-primary-800 text-xs px-2 py-1 rounded-full">{{ skill.name }}</span>
+                        {% endfor %}
+                        {% if portfolio.skills.count() > 3 %}
+                        <span class="text-gray-500 text-xs">+{{ portfolio.skills.count() - 3 }} more</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Stats -->
+                    <div class="flex justify-between text-sm text-gray-500 mb-4">
+                        <span>{{ portfolio.projects.count() }} projects</span>
+                        <span>{{ portfolio.view_count }} views</span>
+                        {% if portfolio.location %}
+                        <span>{{ portfolio.location }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-2">
+                        <a href="{{ url_for('main.view_portfolio', portfolio_id=portfolio.id) }}" 
+                           class="flex-1 bg-primary-600 hover:bg-primary-700 text-white text-center px-4 py-2 rounded-md text-sm font-medium">
+                            View Portfolio
+                        </a>
+                        <button onclick="contactFreelancer({{ portfolio.id }})" 
+                                class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-md text-sm font-medium">
+                            Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if portfolios.pages > 1 %}
+        <div class="mt-8 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                {% if portfolios.has_prev %}
+                <a href="{{ url_for('main.browse', page=portfolios.prev_num, skill=skill_filter, industry=industry_filter, location=location_filter) }}" 
+                   class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                    Previous
+                </a>
+                {% endif %}
+                
+                {% for page_num in portfolios.iter_pages() %}
+                    {% if page_num %}
+                        {% if page_num != portfolios.page %}
+                        <a href="{{ url_for('main.browse', page=page_num, skill=skill_filter, industry=industry_filter, location=location_filter) }}" 
+                           class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            {{ page_num }}
+                        </a>
+                        {% else %}
+                        <span class="px-3 py-2 text-sm font-medium text-primary-600 bg-primary-50 border border-primary-300 rounded-md">
+                            {{ page_num }}
+                        </span>
+                        {% endif %}
+                    {% else %}
+                    <span class="px-3 py-2 text-sm text-gray-400">...</span>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if portfolios.has_next %}
+                <a href="{{ url_for('main.browse', page=portfolios.next_num, skill=skill_filter, industry=industry_filter, location=location_filter) }}" 
+                   class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                    Next
+                </a>
+                {% endif %}
+            </nav>
+        </div>
+        {% endif %}
+        
+        {% else %}
+        <div class="text-center py-12">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33"/>
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-900">No portfolios found</h3>
+            <p class="mt-1 text-sm text-gray-500">
+                {% if skill_filter or industry_filter or location_filter %}
+                    Try adjusting your search criteria.
+                {% else %}
+                    No portfolios are available at the moment.
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Contact Freelancer</h3>
+            <form id="contactForm" method="POST">
+                <div class="space-y-4">
+                    <div>
+                        <label for="contact_name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                        <input type="text" name="name" id="contact_name" required 
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="contact_email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" id="contact_email" required 
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="contact_subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                        <input type="text" name="subject" id="contact_subject" required 
+                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="contact_message" class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea name="message" id="contact_message" rows="4" required 
+                                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"></textarea>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" onclick="closeContactModal()" 
+                            class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded-md">
+                        Cancel
+                    </button>
+                    <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentPortfolioId = null;
+
+function contactFreelancer(portfolioId) {
+    currentPortfolioId = portfolioId;
+    document.getElementById('contactForm').action = `/portfolio/${portfolioId}/contact`;
+    document.getElementById('contactModal').classList.remove('hidden');
+}
+
+function closeContactModal() {
+    document.getElementById('contactModal').classList.add('hidden');
+    document.getElementById('contactForm').reset();
+    currentPortfolioId = null;
+}
+
+// Close modal when clicking outside
+document.getElementById('contactModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeContactModal();
+    }
+});
+</script>
+{% endblock %} 
